@@ -8,7 +8,7 @@ import Pagination from '../Pagination'
 function DataTable(props: TableProps) {
   const { columns, data, onEvent, extraData, pagination } = props
 
-  function handleEvent(params: Omit<OnEventParams, 'extraData'|'cellValue'|'row'>) {
+  function handleEvent(params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>) {
     onEvent?.({ ...params, extraData })
   }
 
@@ -18,7 +18,7 @@ function DataTable(props: TableProps) {
         <THead columns={columns} extraData={extraData} handleEvent={handleEvent} />
         <TBody columns={columns} handleEvent={handleEvent} data={data} extraData={extraData} />
       </Table>
-      {pagination ? <Pagination {...pagination} /> : null}
+      {pagination ? <Pagination {...pagination} handleEvent={handleEvent} /> : null}
     </div>
   )
 }

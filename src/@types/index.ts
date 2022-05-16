@@ -15,11 +15,17 @@ interface FnParams {
 export interface OnEventParams {
   event: any
   eventName: string
-  fieldName: string
+
+  fieldName?: string
   cellValue?: any
   row?: any
   extraData?: any
-  index: number
+  index?: number
+
+  /* pagination */
+  sizePerPage?: number
+  currentPage?: number
+  oldPage?: number
 }
 
 interface CellComponentParams extends FnParams {
@@ -33,6 +39,8 @@ export interface PaginationProps {
   paginationSize: number
   showTotal: boolean
   remote: boolean
+  sizePerPageList: number[]
+  handleEvent: (params: Omit<OnEventParams, 'fieldName' | 'cellValue' | 'row'>) => void
   paginationTotalComponent: (from: number, to: number, size: number) => React.ReactNode
 }
 
