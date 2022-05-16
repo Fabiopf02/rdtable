@@ -15,9 +15,7 @@ const columns = [
   {
     text: 'Name',
     fieldName: 'user.name',
-    cell: ({ cellValue, row, extraData, onEvent, index }) => {
-      return <button onClick={(event) => onEvent({ event, eventName: 'click1' })}>Event</button>
-    },
+    editable: true,
   },
   {
     text: 'Age',
