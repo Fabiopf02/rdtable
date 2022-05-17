@@ -7,13 +7,22 @@ interface Props extends Column {
 }
 
 function Th(props: Props) {
-  const { text, headerClassName, handleEvent, fieldName, header, extraData, index } = props
+  const {
+    text,
+    headerClassName,
+    handleEvent,
+    fieldName,
+    header,
+    extraData,
+    index,
+    headerStyle = {},
+  } = props
   function onEvent({ event, eventName }: CellEvent) {
     handleEvent({ event, eventName, fieldName, index: 0 })
   }
 
   return (
-    <th className={headerClassName}>
+    <th className={headerClassName} style={headerStyle}>
       {header ? (
         header({ onEvent, index, extraData })
       ) : (

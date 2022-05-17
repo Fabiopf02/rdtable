@@ -8,7 +8,17 @@ import '../../styles/index.css'
 import { getFromToPaging } from '../../utils'
 
 function DataTable(props: TableProps) {
-  const { columns, data, onEvent, extraData, pagination } = props
+  const {
+    columns,
+    data,
+    onEvent,
+    extraData,
+    pagination,
+    tableBodyStyle,
+    tableHeaderStyle,
+    tableWrapperStyle,
+    tableRowStyle,
+  } = props
   const [tableData, setTableData] = React.useState(data)
 
   function handleEvent(params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>) {
@@ -24,9 +34,21 @@ function DataTable(props: TableProps) {
 
   return (
     <div className="react-dtable-wrapper">
-      <Table>
-        <THead columns={columns} extraData={extraData} handleEvent={handleEvent} />
-        <TBody columns={columns} handleEvent={handleEvent} data={tableData} extraData={extraData} />
+      <Table style={tableWrapperStyle!}>
+        <THead
+          columns={columns}
+          extraData={extraData}
+          handleEvent={handleEvent}
+          style={tableHeaderStyle!}
+        />
+        <TBody
+          columns={columns}
+          handleEvent={handleEvent}
+          data={tableData}
+          extraData={extraData}
+          style={tableBodyStyle!}
+          rowStyle={tableRowStyle!}
+        />
       </Table>
       {pagination ? <Pagination {...pagination} handleEvent={handleEvent} /> : null}
     </div>
@@ -37,7 +59,12 @@ DataTable.defaultProps = {
   pagination: {
     page: 1,
     sizePerPage: 10,
+    containerStyle: {},
   },
+  tableWrapperStyle: {},
+  tableHeaderStyle: {},
+  tableBodyStyle: {},
+  tableRowStyle: {},
 }
 
 export default DataTable

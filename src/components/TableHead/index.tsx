@@ -3,9 +3,9 @@ import Th from '../Th'
 import { THeaderProps } from '../../@types'
 
 function TableHead(props: THeaderProps) {
-  const { columns, extraData, handleEvent } = props
+  const { columns, extraData, handleEvent, style } = props
   return (
-    <thead className="react-dtable-thead">
+    <thead className="react-dtable-thead" style={style}>
       <tr>
         {columns.map((column, index) => (
           <Th

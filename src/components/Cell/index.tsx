@@ -3,7 +3,17 @@ import { CellEvent, CellProps } from '../../@types'
 import { getProperty } from '../../utils'
 
 function Cell(props: CellProps) {
-  const { row, cell, fieldName, cellClassName, extraData, dataIndex, editable, handleEvent } = props
+  const {
+    row,
+    cell,
+    fieldName,
+    cellClassName,
+    extraData,
+    dataIndex,
+    editable,
+    handleEvent,
+    cellStyle = {},
+  } = props
   const [editing, setEditing] = useState(false)
   const cellValue = getProperty(row, fieldName)
   const [value, setValue] = useState(cellValue)
@@ -44,6 +54,7 @@ function Cell(props: CellProps) {
         cellClassName ? cellClassName({ cellValue, row, extraData, index: dataIndex }) : ''
       }
       onDoubleClick={toggleEditing}
+      style={cellStyle}
     >
       {cell ? renderCustomCell() : null}
       {!cell ? (

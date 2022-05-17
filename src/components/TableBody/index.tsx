@@ -6,15 +6,17 @@ type Props = {
   columns: Column[]
   extraData?: any
   handleEvent: (params: Omit<OnEventParams, 'extraData'>) => void
+  style: React.CSSProperties
+  rowStyle: React.CSSProperties
   data: any[]
 }
 
 function TBody(props: Props) {
-  const { columns, data, handleEvent, extraData } = props
+  const { columns, data, handleEvent, extraData, style, rowStyle } = props
   return (
-    <tbody>
+    <tbody style={style}>
       {data.map((row, dataIndex) => (
-        <tr key={dataIndex}>
+        <tr key={dataIndex} style={rowStyle}>
           {columns.map((column, index) => (
             <Cell
               key={index}

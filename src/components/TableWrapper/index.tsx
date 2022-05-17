@@ -2,10 +2,15 @@ import React from 'react'
 
 type Props = {
   children: React.ReactNode
+  style: React.CSSProperties
 }
 
-function TableWrapper({ children }: Props) {
-  return <table className='react-dtable'>{children}</table>
+function TableWrapper({ children, style }: Props) {
+  return (
+    <table className="react-dtable" style={style}>
+      {children}
+    </table>
+  )
 }
 
 export default React.memo(TableWrapper)

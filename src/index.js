@@ -41,11 +41,14 @@ root.render(
     columns={columns}
     data={data}
     onEvent={(e) => console.log(e)}
+    tableWrapperStyle={{
+      width: '100%',
+    }}
     pagination={{
       page: 1,
       paginationSize: 4,
       totalSize: 10,
-      sizePerPage: 4,
+      sizePerPage: 2,
       showTotal: true,
     }}
   />,

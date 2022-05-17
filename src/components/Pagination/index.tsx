@@ -12,6 +12,7 @@ function Pagination(props: PaginationProps) {
     paginationTotalRenderer,
     sizePerPageList,
     showTotal,
+    containerStyle,
   } = props
   const pages = Math.ceil(totalSize / sizePerPage)
   const { from, to } = getFromToPaging(page, sizePerPage, totalSize)
@@ -78,7 +79,7 @@ function Pagination(props: PaginationProps) {
   }
 
   return (
-    <div className="react-dtable-pagination">
+    <div className="react-dtable-pagination" style={containerStyle}>
       {paginationTotalRenderer ? paginationTotalRenderer(from, to, totalSize) : null}
       {!paginationTotalRenderer && showTotal ? (
         <p>
