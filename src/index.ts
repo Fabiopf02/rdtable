@@ -6,3 +6,5 @@ import Th from './components/Th'
 export type { CellEvent, CellProps, Column, TableProps, PaginationProps } from './@types/index'
 
 export { DataTable, TBody, THead, Table, Th }
+
+export default DataTable

@@ -4,24 +4,21 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "module": "ESNext",  
+    "module": "ESNext",
     "declaration": true,
-    "declarationDir": "types",
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "lib",
     "moduleResolution": "node",
-    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
   },
-  "include": [
-    "src/**/*",
-    "src/stories/**/*",
-  ],
   "exclude": [
     "lib",
     "node_modules",
-    "src/**/*.test.tsx",
-    "src/**/*.stories.tsx",
   ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+  ]
 }

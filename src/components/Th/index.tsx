@@ -1,12 +1,12 @@
 import React from 'react'
 import { CellEvent, Column, OnEventParams } from '../../@types'
 
-interface Props extends Column {
+interface IProps extends Column {
   handleEvent: (params: Omit<OnEventParams, 'extraData' | 'row' | 'cellValue'>) => void
   index: number
 }
 
-function Th(props: Props) {
+function Th(props: IProps) {
   const {
     text,
     headerClassName,

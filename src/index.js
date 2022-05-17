@@ -1,7 +1,6 @@
 import React from 'react'
-import DataTable from './components/DataTable'
+import { DataTable } from './components/DataTable'
 import { createRoot } from 'react-dom/client'
-
 const container = document.getElementById('app')
 const root = createRoot(container)
 
