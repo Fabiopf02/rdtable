@@ -5,10 +5,16 @@ import { THeaderProps } from '../../@types'
 function TableHead(props: THeaderProps) {
   const { columns, extraData, handleEvent } = props
   return (
-    <thead>
+    <thead className="react-dtable-thead">
       <tr>
         {columns.map((column, index) => (
-          <Th key={index} {...column} extraData={extraData} handleEvent={handleEvent} index={index} />
+          <Th
+            key={index}
+            {...column}
+            extraData={extraData}
+            handleEvent={handleEvent}
+            index={index}
+          />
         ))}
       </tr>
     </thead>
