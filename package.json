@@ -10,7 +10,7 @@
   ],
   "source": "src/index.ts",
   "author": "Fábio França",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html",
     "build": "webpack --mode production",
