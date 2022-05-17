@@ -1,6 +1,7 @@
 import React from 'react'
 import { PaginationProps } from '../../@types'
 import { getPagination } from './util'
+import { getFromToPaging } from '../../utils'
 
 function Pagination(props: PaginationProps) {
   const {
@@ -13,9 +14,7 @@ function Pagination(props: PaginationProps) {
     showTotal,
   } = props
   const pages = Math.ceil(totalSize / sizePerPage)
-  const count = page * sizePerPage - sizePerPage + 1
-  const delimiter = count + sizePerPage - 1
-  const to = delimiter > totalSize ? totalSize : delimiter
+  const { from, to } = getFromToPaging(page, sizePerPage, totalSize)
   const pagination = getPagination(paginationSize, page, totalSize)
 
   function handlePagination(event: any, currentPage: number, index: number, perPage = sizePerPage) {
@@ -80,10 +79,10 @@ function Pagination(props: PaginationProps) {
 
   return (
     <div className="react-dtable-pagination">
-      {paginationTotalRenderer ? paginationTotalRenderer(count, to, totalSize) : null}
+      {paginationTotalRenderer ? paginationTotalRenderer(from, to, totalSize) : null}
       {!paginationTotalRenderer && showTotal ? (
         <p>
-          Exibindo {count} até {to} de {totalSize}
+          Exibindo {from} até {to} de {totalSize}
         </p>
       ) : null}
       {props.customSizePerPageRenderer
