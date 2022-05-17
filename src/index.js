@@ -6,12 +6,16 @@ const container = document.getElementById('app')
 const root = createRoot(container)
 
 const data = [
-  { user: { name: 'John', age: 30 } },
-  { user: { name: 'Jane', age: 28 } },
-  { user: { name: 'Joe', age: 32 } },
+  { user: { id: 1, name: 'John', age: 30 } },
+  { user: { id: 2, name: 'Jane', age: 28 } },
+  { user: { id: 3, name: 'Joe', age: 32 } },
 ]
 
 const columns = [
+  {
+    text: 'ID',
+    fieldName: 'user.id',
+  },
   {
     text: 'Name',
     fieldName: 'user.name',
@@ -37,6 +41,12 @@ root.render(
     columns={columns}
     data={data}
     onEvent={(e) => console.log(e)}
-    pagination={{ page: 1, paginationSize: 4, totalSize: 10, sizePerPage: 2, showTotal: true }}
+    pagination={{
+      page: 1,
+      paginationSize: 4,
+      totalSize: 10,
+      sizePerPage: 4,
+      showTotal: true,
+    }}
   />,
 )

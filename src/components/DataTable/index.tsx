@@ -4,6 +4,7 @@ import THead from '../TableHead'
 import { OnEventParams, TableProps } from '../../@types'
 import TBody from '../TableBody'
 import Pagination from '../Pagination'
+import '../../styles/index.css'
 
 function DataTable(props: TableProps) {
   const { columns, data, onEvent, extraData, pagination } = props

@@ -32,6 +32,10 @@ interface CellComponentParams extends FnParams {
   onEvent: (event: CellEvent) => void
 }
 
+interface CustomSizePerPageRendererFn {
+  onChangeSizePerPage: (params: { event?: any; newSizePerPage: number }) => React.ReactNode
+}
+
 export interface PaginationProps {
   totalSize: number
   sizePerPage: number
@@ -41,7 +45,8 @@ export interface PaginationProps {
   remote: boolean
   sizePerPageList: number[]
   handleEvent: (params: Omit<OnEventParams, 'fieldName' | 'cellValue' | 'row'>) => void
-  paginationTotalComponent: (from: number, to: number, size: number) => React.ReactNode
+  paginationTotalRenderer: (from: number, to: number, size: number) => React.ReactNode
+  customSizePerPageRenderer: (params: CustomSizePerPageRendererFn) => React.ReactNode
 }
 
 export interface Column {
