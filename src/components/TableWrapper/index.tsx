@@ -7,7 +7,7 @@ type Props = {
 
 function TableWrapper({ children, style }: Props) {
   return (
-    <table className="react-dtable" style={style}>
+    <table className="rdtable" style={style}>
       {children}
     </table>
   )

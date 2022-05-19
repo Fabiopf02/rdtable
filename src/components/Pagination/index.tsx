@@ -50,18 +50,21 @@ function Pagination(props: PaginationProps) {
 
   function renderSizePerPageList() {
     return (
-      <select
-        value={sizePerPage}
-        onChange={(event) =>
-          onChangeSizePerPage({ event, newSizePerPage: Number(event.target.value) })
-        }
-      >
-        {sizePerPageList!.map((size: number) => (
-          <option key={size} value={size}>
-            {size}
-          </option>
-        ))}
-      </select>
+      <div className="per-page">
+        <span>Registros Por Página:</span>
+        <select
+          value={sizePerPage}
+          onChange={(event) =>
+            onChangeSizePerPage({ event, newSizePerPage: Number(event.target.value) })
+          }
+        >
+          {sizePerPageList!.map((size: number) => (
+            <option key={size} value={size}>
+              {size}
+            </option>
+          ))}
+        </select>
+      </div>
     )
   }
 
@@ -79,7 +82,7 @@ function Pagination(props: PaginationProps) {
   }
 
   return (
-    <div className="react-dtable-pagination" style={containerStyle}>
+    <div className="rdtable-pagination" style={containerStyle}>
       {paginationTotalRenderer ? paginationTotalRenderer(from, to, totalSize) : null}
       {!paginationTotalRenderer && showTotal ? (
         <p>

@@ -5,7 +5,7 @@ import { THeaderProps } from '../../@types'
 function TableHead(props: THeaderProps) {
   const { columns, extraData, handleEvent, style } = props
   return (
-    <thead className="react-dtable-thead" style={style}>
+    <thead className="rdtable-thead" style={style}>
       <tr>
         {columns.map((column, index) => (
           <Th

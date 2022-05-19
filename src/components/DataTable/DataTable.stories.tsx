@@ -46,8 +46,13 @@ const columns: Column[] = [
   },
 ]
 
-export const Component = Template.bind({})
-Component.args = {
+export const Simple = Template.bind({})
+Simple.args = {
+  columns,
+  data,
+}
+export const Full = Template.bind({})
+Full.args = {
   columns,
   data,
   onEvent: (e) => console.log(e),

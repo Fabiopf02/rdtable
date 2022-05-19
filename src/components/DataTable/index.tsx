@@ -5,6 +5,7 @@ import { OnEventParams, TableProps } from '../../@types'
 import TBody from '../TableBody'
 import Pagination from '../Pagination'
 import { getFromToPaging } from '../../utils'
+import '../../index.css'
 
 function DataTable(props: TableProps) {
   const {
@@ -32,7 +33,7 @@ function DataTable(props: TableProps) {
   }, [data])
 
   return (
-    <div className="react-dtable-wrapper">
+    <div className="rdtable-wrapper">
       <Table style={tableWrapperStyle!}>
         <THead
           columns={columns}

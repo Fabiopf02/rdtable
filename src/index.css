@@ -1,0 +1,98 @@
+.rdtable-wrapper {
+  position: relative;
+  --primary: #6d60b0;
+  --padding: 0.5rem;
+  --radius: 0.25rem;
+  --border-color: #666;
+}
+
+.rdtable {
+  border-collapse: collapse;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+
+.rdtable * {
+  font-family: sans-serif;
+  font-size: 1rem;
+  padding: var(--padding);
+  box-sizing: border-box;
+}
+
+.rdtable .rdtable-thead {
+  background: var(--primary);
+  color: #fff;
+}
+
+.rdtable-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  column-gap: var(--padding);
+  border-top: 1px solid #ddd;
+}
+
+.rdtable-pagination .pages {
+  display: flex;
+}
+
+.rdtable-pagination .pages button {
+  padding: calc(var(--padding) * 1.2);
+  border-radius: 0;
+  border: 0.5px solid var(--primary);
+  font-size: inherit;
+  color: var(--primary);
+  box-shadow: none;
+  font-weight: 500;
+}
+.rdtable-pagination .pages button:not(:disabled) {
+  cursor: pointer;
+}
+.rdtable-pagination .pages .page-item.active {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.rdtable-pagination .pages .page-item:not(:first-child) {
+  border-left: 0;
+  border-right: 0;
+}
+
+.rdtable-pagination .pages button:active:not(:disabled) {
+  background-color: var(--primary);
+  color: #fff;
+}
+.rdtable-pagination .pages button:hover:not(:disabled) {
+  background-color: var(--primary);
+  color: #ddd;
+}
+.rdtable-pagination .pages button:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.rdtable-pagination .pages button:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.rdtable-pagination .per-page {
+  display: flex;
+  width: auto;
+}
+
+.rdtable-pagination select {
+  padding: calc(var(--padding) * 1.2);
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  width: 100%;
+  max-width: 70px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+}
