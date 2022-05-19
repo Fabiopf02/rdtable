@@ -1,4 +1,7 @@
 node_modules
 .cache
 dist
-.prettierrc
+src
+yarn-error.log
+.storybook
+./src/**/*.stories.tsx

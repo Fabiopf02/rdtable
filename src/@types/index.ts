@@ -42,21 +42,21 @@ export interface PaginationProps {
   page: number
   paginationSize: number
   showTotal: boolean
-  sizePerPageList: number[]
+  sizePerPageList?: number[]
   containerStyle?: React.CSSProperties
   handleEvent: (params: Omit<OnEventParams, 'fieldName' | 'cellValue' | 'row'>) => void
-  paginationTotalRenderer: (from: number, to: number, size: number) => React.ReactNode
-  customSizePerPageRenderer: (params: CustomSizePerPageRendererFn) => React.ReactNode
+  paginationTotalRenderer?: (from: number, to: number, size: number) => React.ReactNode
+  customSizePerPageRenderer?: (params: CustomSizePerPageRendererFn) => React.ReactNode
 }
 
 export interface Column {
   text: string
   headerClassName?: string
-  header: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
-  filter: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
+  header?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
+  filter?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
   fieldName: string
   editable?: boolean
-  extraData: any
+  extraData?: any
   headerStyle?: React.CSSProperties
   cellStyle?: React.CSSProperties
   cellClassName?: (params: FnParams) => string
@@ -82,9 +82,9 @@ export interface THeaderProps {
 
 export interface TableProps {
   data: any[]
-  extraData: any
+  extraData?: any
   columns: Column[]
-  pagination: PaginationProps
+  pagination: Omit<PaginationProps, 'handleEvent'>
   tableWrapperStyle?: React.CSSProperties
   tableBodyStyle?: React.CSSProperties
   tableHeaderStyle?: React.CSSProperties

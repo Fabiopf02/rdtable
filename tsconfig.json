@@ -1,21 +1,27 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
-    "strict": true,
+    "target": "ES6",
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "rootDirs": ["./src"], 
     "jsx": "react",
     "module": "ESNext",
+    "sourceMap": true,
     "declaration": true,
-    "sourceMap": false,
+    "declarationMap": true,
     "outDir": "lib",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true,
+    "noEmit": false,
+    "lib": ["es6", "dom"]
   },
   "exclude": [
     "lib",
     "node_modules",
+    "dist",
+    "src/**/*.stories.tsx"
   ],
   "include": [
     "src/**/*.ts",

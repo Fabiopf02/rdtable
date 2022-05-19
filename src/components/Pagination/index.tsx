@@ -56,7 +56,7 @@ function Pagination(props: PaginationProps) {
           onChangeSizePerPage({ event, newSizePerPage: Number(event.target.value) })
         }
       >
-        {sizePerPageList.map((size: number) => (
+        {sizePerPageList!.map((size: number) => (
           <option key={size} value={size}>
             {size}
           </option>
