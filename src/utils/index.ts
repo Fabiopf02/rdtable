@@ -7,9 +7,9 @@ export function getProperty<T>(obj: T, path: string, defaultValue: object | null
 }
 
 export function getFromToPaging(page: number, sizePerPage: number, totalSize: number) {
-  const from = page * sizePerPage - sizePerPage + 1
+  const from = page * sizePerPage - sizePerPage
   const delimiter = from + sizePerPage - 1
-  const to = delimiter > totalSize ? totalSize : delimiter
+  const to = delimiter > totalSize ? totalSize : delimiter + 1
 
   return { from, to }
 }

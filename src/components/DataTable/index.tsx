@@ -7,6 +7,12 @@ import Pagination from '../Pagination'
 import { getFromToPaging } from '../../utils'
 import '../../index.css'
 
+interface Paginate {
+  page: number
+  sizePerPage: number
+  totalSize: number
+}
+
 function DataTable(props: TableProps) {
   const {
     columns,
@@ -18,19 +24,24 @@ function DataTable(props: TableProps) {
     tableHeaderStyle,
     tableWrapperStyle,
     tableRowStyle,
+    remote,
   } = props
-  const [tableData, setTableData] = React.useState(data)
+  const [tableData, setTableData] = React.useState<any[]>([])
 
   function handleEvent(params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>) {
     onEvent?.({ ...params, extraData })
   }
 
   React.useEffect(() => {
-    if (!pagination) return setTableData(data)
-    const { page, sizePerPage, totalSize = data.length } = pagination
+    if (!pagination || remote.pagination) return setTableData(data)
+    changePaginate(pagination)
+  }, [])
+
+  function changePaginate(params: Paginate) {
+    const { page, sizePerPage, totalSize = data.length } = params
     const { from, to } = getFromToPaging(page, sizePerPage, totalSize)
-    setTableData(data.slice(from - 1, to))
-  }, [data])
+    setTableData([...data.slice(from, to)])
+  }
 
   return (
     <div className="rdtable-wrapper">
@@ -50,21 +61,24 @@ function DataTable(props: TableProps) {
           rowStyle={tableRowStyle!}
         />
       </Table>
-      {pagination ? <Pagination {...pagination} handleEvent={handleEvent} /> : null}
+      {pagination ? (
+        <Pagination
+          {...pagination}
+          changePaginate={changePaginate}
+          remote={!!remote.pagination}
+          handleEvent={handleEvent}
+        />
+      ) : null}
     </div>
   )
 }
 
 DataTable.defaultProps = {
-  pagination: {
-    page: 1,
-    sizePerPage: 10,
-    containerStyle: {},
-  },
   tableWrapperStyle: {},
   tableHeaderStyle: {},
   tableBodyStyle: {},
   tableRowStyle: {},
+  remote: { pagination: false },
 }
 
 export default DataTable

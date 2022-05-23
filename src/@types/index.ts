@@ -44,6 +44,8 @@ export interface PaginationProps {
   showTotal: boolean
   sizePerPageList?: number[]
   containerStyle?: React.CSSProperties
+  remote: boolean
+  changePaginate: (params: { page: number; sizePerPage: number; totalSize: number }) => void
   handleEvent: (params: Omit<OnEventParams, 'fieldName' | 'cellValue' | 'row'>) => void
   paginationTotalRenderer?: (from: number, to: number, size: number) => React.ReactNode
   customSizePerPageRenderer?: (params: CustomSizePerPageRendererFn) => React.ReactNode
@@ -89,6 +91,9 @@ export interface TableProps {
   tableBodyStyle?: React.CSSProperties
   tableHeaderStyle?: React.CSSProperties
   tableRowStyle?: React.CSSProperties
+  remote: {
+    pagination: boolean
+  }
   onEvent: (params: OnEventParams) => void
 }
 

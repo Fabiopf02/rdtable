@@ -19,6 +19,14 @@ const data = [
   { user: { id: 1, name: 'John', age: 30 } },
   { user: { id: 2, name: 'Jane', age: 28 } },
   { user: { id: 3, name: 'Joe', age: 32 } },
+  { user: { id: 4, name: 'Joe', age: 32 } },
+  { user: { id: 5, name: 'Joe', age: 32 } },
+  { user: { id: 6, name: 'Joe', age: 32 } },
+  { user: { id: 7, name: 'Joe', age: 32 } },
+  { user: { id: 8, name: 'Joe', age: 32 } },
+  { user: { id: 9, name: 'Joe', age: 32 } },
+  { user: { id: 10, name: 'Joe', age: 32 } },
+  { user: { id: 11, name: 'Joe', age: 32 } },
 ]
 
 const columns: Column[] = [
@@ -62,8 +70,8 @@ Full.args = {
   pagination: {
     page: 1,
     paginationSize: 4,
-    totalSize: 10,
-    sizePerPage: 2,
+    totalSize: data.length,
+    sizePerPage: 3,
     showTotal: true,
   },
 }

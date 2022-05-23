@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { PaginationProps } from '../../@types'
 import { getPagination } from './util'
 import { getFromToPaging } from '../../utils'
@@ -13,12 +13,21 @@ function Pagination(props: PaginationProps) {
     sizePerPageList,
     showTotal,
     containerStyle,
+    remote,
+    changePaginate,
   } = props
-  const pages = Math.ceil(totalSize / sizePerPage)
-  const { from, to } = getFromToPaging(page, sizePerPage, totalSize)
-  const pagination = getPagination(paginationSize, page, totalSize)
+  const [currentPage, setCurrentPage] = useState(page)
+  const [currentSizePerPage, setCurrentSizePerPage] = useState(sizePerPage)
+  const pages = Math.ceil(totalSize / currentSizePerPage)
+  const { from, to } = getFromToPaging(currentPage, currentSizePerPage, totalSize)
+  const pagination = getPagination(paginationSize, currentPage, totalSize, pages)
 
   function handlePagination(event: any, currentPage: number, index: number, perPage = sizePerPage) {
+    setCurrentPage(currentPage)
+    setCurrentSizePerPage(perPage)
+    if (!remote) {
+      return changePaginate({ page: currentPage, sizePerPage: perPage, totalSize })
+    }
     props.handleEvent({
       event,
       eventName: 'pagination',
@@ -30,12 +39,12 @@ function Pagination(props: PaginationProps) {
   }
 
   function handlePrevPage(event: any) {
-    if (page <= 1) return
-    handlePagination(event, page - 1, 0)
+    if (currentPage <= 1) return
+    handlePagination(event, currentPage - 1, 0)
   }
   function handleNextPage(event: any) {
-    if (page >= pages) return
-    handlePagination(event, page + 1, 0)
+    if (currentPage >= pages) return
+    handlePagination(event, currentPage + 1, 0)
   }
 
   function onChangeSizePerPage({
@@ -45,7 +54,7 @@ function Pagination(props: PaginationProps) {
     newSizePerPage: number
     event?: any
   }): any {
-    handlePagination(event, page, 0, newSizePerPage)
+    handlePagination(event, currentPage, 0, newSizePerPage)
   }
 
   function renderSizePerPageList() {
@@ -53,7 +62,7 @@ function Pagination(props: PaginationProps) {
       <div className="per-page">
         <span>Registros Por Página:</span>
         <select
-          value={sizePerPage}
+          value={currentSizePerPage}
           onChange={(event) =>
             onChangeSizePerPage({ event, newSizePerPage: Number(event.target.value) })
           }
@@ -72,8 +81,8 @@ function Pagination(props: PaginationProps) {
     return (
       <button
         key={value + '' + index}
-        disabled={value === '...' || value === page}
-        className={`page-item page-index-${page} ${value === page ? 'active' : ''}`}
+        disabled={value === '...' || value === currentPage}
+        className={`page-item page-index-${currentPage} ${value === currentPage ? 'active' : ''}`}
         onClick={(event) => handlePagination(event, Number(value), index)}
       >
         {value}
@@ -86,7 +95,7 @@ function Pagination(props: PaginationProps) {
       {paginationTotalRenderer ? paginationTotalRenderer(from, to, totalSize) : null}
       {!paginationTotalRenderer && showTotal ? (
         <p>
-          Exibindo {from} até {to} de {totalSize}
+          Exibindo {from + 1} até {to} de {totalSize}
         </p>
       ) : null}
       {props.customSizePerPageRenderer
@@ -104,6 +113,7 @@ function Pagination(props: PaginationProps) {
 Pagination.defaultProps = {
   showTotal: true,
   remote: false,
+  page: 1,
   sizePerPage: 10,
   paginationSize: 6,
   sizePerPageList: [10, 25, 30, 50],

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CellEvent, CellProps } from '../../@types'
 import { getProperty } from '../../utils'
 
@@ -47,6 +47,10 @@ function Cell(props: CellProps) {
     })
     toggleEditing()
   }
+
+  useEffect(() => {
+    setValue(cellValue)
+  }, [cellValue])
 
   return (
     <td
