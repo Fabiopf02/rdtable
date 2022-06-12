@@ -13,3 +13,15 @@ export function getFromToPaging(page: number, sizePerPage: number, totalSize: nu
 
   return { from, to }
 }
+
+export function isObject(param: any) {
+  return Object.prototype.toString.call(param) === '[object Object]'
+}
+export function isArray(param: any) {
+  return Object.prototype.toString.call(param) === '[object Array]'
+}
+
+export function sliceObject(_object: object, start = 0, end = 0) {
+  const sliced = Object.fromEntries(Object.entries(_object).slice(start, end))
+  return sliced
+}

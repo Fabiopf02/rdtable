@@ -82,6 +82,11 @@ export interface THeaderProps {
   columns: Column[]
 }
 
+interface Group<T = any> {
+  type: 'objects' | 'arrays'
+  customTitleRenderer?: (title: string, groupData: T[]) => React.ReactNode
+}
+
 export interface TableProps {
   data: any[]
   extraData?: any
@@ -94,6 +99,11 @@ export interface TableProps {
   remote: {
     pagination: boolean
   }
+  /**
+   * - for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}`
+   * - for `type='arrays'` `data` must be of type `[[{...}, ...], ...]`
+   */
+  group?: Group
   onEvent: (params: OnEventParams) => void
 }
 

@@ -53,9 +53,10 @@ function Cell(props: CellProps) {
   }, [cellValue])
 
   return (
-    <td
+    <div
       className={
-        cellClassName ? cellClassName({ cellValue, row, extraData, index: dataIndex }) : ''
+        'cell ' +
+        (cellClassName ? cellClassName({ cellValue, row, extraData, index: dataIndex }) : '')
       }
       onDoubleClick={toggleEditing}
       style={cellStyle}
@@ -68,7 +69,7 @@ function Cell(props: CellProps) {
           value
         )
       ) : null}
-    </td>
+    </div>
   )
 }
 

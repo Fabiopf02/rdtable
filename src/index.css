@@ -23,6 +23,24 @@
 .rdtable .rdtable-thead {
   background: var(--primary);
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rdtable .rdtable-thead div {
+  flex: 1;
+}
+
+.rdtable .rdtable-body .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rdtable .rdtable-body .group-title * {
+  margin: 0;
+}
+.rdtable .rdtable-body .row .cell {
+  flex: 1;
 }
 
 .rdtable tbody tr:nth-child(even) {

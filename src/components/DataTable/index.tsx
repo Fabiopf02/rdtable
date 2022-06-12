@@ -4,7 +4,7 @@ import THead from '../TableHead'
 import { OnEventParams, TableProps } from '../../@types'
 import TBody from '../TableBody'
 import Pagination from '../Pagination'
-import { getFromToPaging } from '../../utils'
+import { getFromToPaging, isObject, sliceObject } from '../../utils'
 import '../../index.css'
 
 interface Paginate {
@@ -25,6 +25,7 @@ function DataTable(props: TableProps) {
     tableWrapperStyle,
     tableRowStyle,
     remote,
+    group,
   } = props
   const [tableData, setTableData] = React.useState<any[]>([])
 
@@ -40,6 +41,9 @@ function DataTable(props: TableProps) {
   function changePaginate(params: Paginate) {
     const { page, sizePerPage, totalSize = data.length } = params
     const { from, to } = getFromToPaging(page, sizePerPage, totalSize)
+    if (isObject(data)) {
+      return setTableData(sliceObject(data as object, from, to) as any[])
+    }
     setTableData([...data.slice(from, to)])
   }
 
@@ -59,6 +63,7 @@ function DataTable(props: TableProps) {
           extraData={extraData}
           style={tableBodyStyle!}
           rowStyle={tableRowStyle!}
+          group={group}
         />
       </Table>
       {pagination ? (

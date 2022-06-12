@@ -75,3 +75,40 @@ Full.args = {
     showTotal: true,
   },
 }
+
+const groupedData = {
+  'Título teste 1': [
+    { name: 'Teste 1', group: 'Grupo teste 1' },
+    { name: 'Teste 2', group: 'Grupo teste 1' },
+  ],
+  'Título teste 2': [
+    { name: 'Teste 3', group: 'Grupo teste 2' },
+    { name: 'Teste 4', group: 'Grupo teste 2' },
+  ],
+}
+
+export const Group = Template.bind({})
+Group.args = {
+  columns: [
+    { text: 'Name', fieldName: 'name' },
+    { text: 'Group', fieldName: 'group' },
+  ],
+  data: groupedData,
+  group: {
+    type: 'objects',
+    customTitleRenderer: (t: string, g: any[]) => {
+      return <h3>{t.toUpperCase()}</h3>
+    },
+  },
+  onEvent: (e) => console.log(e),
+  tableWrapperStyle: {
+    width: '100%',
+  },
+  pagination: {
+    page: 1,
+    paginationSize: 4,
+    totalSize: data.length,
+    sizePerPage: 3,
+    showTotal: true,
+  },
+}

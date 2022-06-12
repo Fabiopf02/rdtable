@@ -22,7 +22,7 @@ function Th(props: IProps) {
   }
 
   return (
-    <th className={headerClassName} style={headerStyle}>
+    <div className={headerClassName} style={headerStyle}>
       {header ? (
         header({ onEvent, index, extraData })
       ) : (
@@ -31,7 +31,7 @@ function Th(props: IProps) {
           {props.filter ? props.filter : null}
         </>
       )}
-    </th>
+    </div>
   )
 }
 

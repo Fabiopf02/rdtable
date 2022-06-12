@@ -7,9 +7,9 @@ type Props = {
 
 function TableWrapper({ children, style }: Props) {
   return (
-    <table className="rdtable" style={style}>
+    <div className="rdtable" style={style}>
       {children}
-    </table>
+    </div>
   )
 }
 
