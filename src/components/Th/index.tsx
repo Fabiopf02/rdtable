@@ -18,17 +18,30 @@ function Th(props: IProps) {
     headerStyle = {},
   } = props
   function onEvent({ event, eventName }: CellEvent) {
-    handleEvent({ event, eventName, fieldName, index: 0 })
+    handleEvent({ event, eventName, fieldName, index })
+  }
+
+  function onFilterChange(event: React.ChangeEvent<HTMLInputElement>) {
+    handleEvent({ event, eventName: 'filter', fieldName, index, filterValue: event.target.value })
   }
 
   return (
-    <div className={headerClassName} style={headerStyle}>
+    <div className={'thead-th ' + headerClassName} style={headerStyle}>
       {header ? (
         header({ onEvent, index, extraData })
       ) : (
         <>
-          {text}
-          {props.filter ? props.filter : null}
+          <span>{text}</span>
+          {props.filter && !props.filter.customRenderer ? (
+            <input
+              type={props.filter.type || 'text'}
+              onChange={onFilterChange}
+              placeholder={props.filter.placeholder || ''}
+            />
+          ) : null}
+          {props.filter && props.filter.customRenderer
+            ? props.filter.customRenderer({ onEvent, extraData, index })
+            : null}
         </>
       )}
     </div>

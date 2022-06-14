@@ -38,6 +38,7 @@ const columns: Column[] = [
     text: 'Name',
     fieldName: 'user.name',
     editable: true,
+    filter: { type: 'text', placeholder: 'Filtrar por nome...' },
   },
   {
     text: 'Age',

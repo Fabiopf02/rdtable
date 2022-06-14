@@ -26,6 +26,9 @@ export interface OnEventParams {
   sizePerPage?: number
   currentPage?: number
   oldPage?: number
+
+  /* filter */
+  filterValue?: string
 }
 
 interface CellComponentParams extends FnParams {
@@ -51,11 +54,15 @@ export interface PaginationProps {
   customSizePerPageRenderer?: (params: CustomSizePerPageRendererFn) => React.ReactNode
 }
 
+interface Filter extends Partial<HTMLInputElement> {
+  customRenderer?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
+}
+
 export interface Column {
   text: string
   headerClassName?: string
   header?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
-  filter?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
+  filter?: Filter
   fieldName: string
   editable?: boolean
   extraData?: any

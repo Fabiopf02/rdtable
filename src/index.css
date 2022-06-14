@@ -28,6 +28,10 @@
   align-items: center;
   justify-content: space-between;
 }
+.rdtable .thead-th {
+  display: flex;
+  flex-direction: column;
+}
 .rdtable .rdtable-thead div {
   flex: 1;
 }
