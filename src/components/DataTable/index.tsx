@@ -36,7 +36,7 @@ function DataTable(props: TableProps) {
   React.useEffect(() => {
     if (!pagination || remote.pagination) return setTableData(data)
     changePaginate(pagination)
-  }, [])
+  }, [data])
 
   function changePaginate(params: Paginate) {
     const { page, sizePerPage, totalSize = data.length } = params

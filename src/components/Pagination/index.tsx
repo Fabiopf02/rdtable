@@ -40,11 +40,11 @@ function Pagination(props: PaginationProps) {
 
   function handlePrevPage(event: any) {
     if (currentPage <= 1) return
-    handlePagination(event, currentPage - 1, 0)
+    handlePagination(event, currentPage - 1, 0, currentSizePerPage)
   }
   function handleNextPage(event: any) {
     if (currentPage >= pages) return
-    handlePagination(event, currentPage + 1, 0)
+    handlePagination(event, currentPage + 1, 0, currentSizePerPage)
   }
 
   function onChangeSizePerPage({
@@ -83,7 +83,7 @@ function Pagination(props: PaginationProps) {
         key={value + '' + index}
         disabled={value === '...' || value === currentPage}
         className={`page-item page-index-${currentPage} ${value === currentPage ? 'active' : ''}`}
-        onClick={(event) => handlePagination(event, Number(value), index)}
+        onClick={(event) => handlePagination(event, Number(value), index, currentSizePerPage)}
       >
         {value}
       </button>
