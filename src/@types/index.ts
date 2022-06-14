@@ -105,6 +105,7 @@ export interface TableProps {
   tableRowStyle?: React.CSSProperties
   remote: {
     pagination: boolean
+    filter: boolean
   }
   /**
    * - for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}`

@@ -4,7 +4,7 @@ import THead from '../TableHead'
 import { OnEventParams, TableProps } from '../../@types'
 import TBody from '../TableBody'
 import Pagination from '../Pagination'
-import { getFromToPaging, isObject, sliceObject } from '../../utils'
+import { filterData, getFromToPaging, isObject, sliceObject } from '../../utils'
 import '../../index.css'
 
 interface Paginate {
@@ -28,23 +28,31 @@ function DataTable(props: TableProps) {
     group,
   } = props
   const [tableData, setTableData] = React.useState<any[]>([])
+  const [currentData, setCurrentData] = React.useState<any[]>([])
+  const [totalSize, setTotalSize] = React.useState(pagination ? pagination.totalSize : 0)
 
   function handleEvent(params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>) {
+    if (params.eventName === 'filter' && !remote.filter) {
+      const newData = filterData(tableData, params)
+      setTotalSize(newData.length)
+      changePaginate(pagination, newData)
+    }
     onEvent?.({ ...params, extraData })
   }
 
   React.useEffect(() => {
-    if (!pagination || remote.pagination) return setTableData(data)
-    changePaginate(pagination)
+    setTableData(data)
+    if (!pagination || remote.pagination) return
+    changePaginate(pagination, data)
   }, [data])
 
-  function changePaginate(params: Paginate) {
-    const { page, sizePerPage, totalSize = data.length } = params
-    const { from, to } = getFromToPaging(page, sizePerPage, totalSize)
-    if (isObject(data)) {
-      return setTableData(sliceObject(data as object, from, to) as any[])
+  function changePaginate(params: Paginate, _data: any[] = tableData) {
+    const { page, sizePerPage, totalSize: _total = totalSize } = params
+    const { from, to } = getFromToPaging(page, sizePerPage, _total)
+    if (isObject(_data)) {
+      return setCurrentData(sliceObject(_data as object, from, to) as any[])
     }
-    setTableData([...data.slice(from, to)])
+    setCurrentData([..._data.slice(from, to)])
   }
 
   return (
@@ -59,7 +67,7 @@ function DataTable(props: TableProps) {
         <TBody
           columns={columns}
           handleEvent={handleEvent}
-          data={tableData}
+          data={currentData}
           extraData={extraData}
           style={tableBodyStyle!}
           rowStyle={tableRowStyle!}
@@ -69,6 +77,7 @@ function DataTable(props: TableProps) {
       {pagination ? (
         <Pagination
           {...pagination}
+          totalSize={totalSize}
           changePaginate={changePaginate}
           remote={!!remote.pagination}
           handleEvent={handleEvent}

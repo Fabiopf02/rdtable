@@ -75,6 +75,7 @@ Full.args = {
     sizePerPage: 3,
     showTotal: true,
   },
+  remote: { filter: false },
 }
 
 const groupedData = {
