@@ -44,6 +44,9 @@
 .rdtable .rdtable-body .group-title * {
   margin: 0;
 }
+.rdtable .rdtable-body .row.hover:hover {
+  background-color: #dddddd90;
+}
 .rdtable .rdtable-body .row .cell {
   flex: 1;
 }

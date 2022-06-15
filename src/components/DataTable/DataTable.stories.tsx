@@ -64,6 +64,7 @@ export const Full = Template.bind({})
 Full.args = {
   columns,
   data,
+  hover: true,
   onEvent: (e) => console.log(e),
   tableWrapperStyle: {
     width: '100%',
