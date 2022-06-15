@@ -30,21 +30,26 @@ function DataTable(props: TableProps) {
   const [tableData, setTableData] = React.useState<any[]>([])
   const [currentData, setCurrentData] = React.useState<any[]>([])
   const [totalSize, setTotalSize] = React.useState(pagination ? pagination.totalSize : 0)
+  const [currentPagination, setCurrentPagination] = React.useState(pagination)
 
   function handleEvent(params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>) {
     if (params.eventName === 'filter' && !remote.filter) {
       const newData = filterData(tableData, params)
       setTotalSize(newData.length)
-      changePaginate(pagination, newData)
+      changePaginate(currentPagination, newData)
     }
     onEvent?.({ ...params, extraData })
   }
 
   React.useEffect(() => {
     setTableData(data)
-    if (!pagination || remote.pagination) return
-    changePaginate(pagination, data)
+    if (!currentPagination || remote.pagination) return
+    changePaginate(currentPagination, data)
   }, [data])
+
+  React.useEffect(() => {
+    setCurrentPagination(pagination)
+  }, [pagination])
 
   function changePaginate(params: Paginate, _data: any[] = tableData) {
     const { page, sizePerPage, totalSize: _total = totalSize } = params
@@ -74,9 +79,9 @@ function DataTable(props: TableProps) {
           group={group}
         />
       </Table>
-      {pagination ? (
+      {currentPagination ? (
         <Pagination
-          {...pagination}
+          {...currentPagination}
           totalSize={totalSize}
           changePaginate={changePaginate}
           remote={!!remote.pagination}
