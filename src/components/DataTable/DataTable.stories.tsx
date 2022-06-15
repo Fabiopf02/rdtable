@@ -65,6 +65,7 @@ Full.args = {
   columns,
   data,
   hover: true,
+  bordered: true,
   onEvent: (e) => console.log(e),
   tableWrapperStyle: {
     width: '100%',

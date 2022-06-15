@@ -36,11 +36,23 @@
   flex: 1;
 }
 
+.rdtable .rdtable-body {
+  padding: 0;
+}
 .rdtable .rdtable-body .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 3.2rem;
+  padding: 0;
+}
+.rdtable .rdtable-body .row.bordered {
   border-bottom: 1px solid #dddddd;
+}
+.rdtable .rdtable-body .row.bordered:first-child {
+  border-left: 1px solid #dddddd;
+}
+.rdtable .rdtable-body .row.bordered .cell {
   border-right: 1px solid #dddddd;
 }
 .rdtable .rdtable-body .group-title * {
@@ -50,7 +62,10 @@
   background-color: #dddddd90;
 }
 .rdtable .rdtable-body .row .cell {
+  display: flex;
   flex: 1;
+  min-height: 3rem;
+  align-items: center;
 }
 .rdtable .rdtable-body .row .cell.editable:hover {
   cursor: pointer;

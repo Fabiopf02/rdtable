@@ -16,6 +16,7 @@ type Props = {
   rowStyle: React.CSSProperties
   data: any[]
   hover?: boolean
+  bordered?: boolean
   /**
    * - for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}`
    * - for `type='arrays'` `data` must be of type `[[{...}, ...], ...]`
@@ -24,10 +25,14 @@ type Props = {
 }
 
 function TBody(props: Props) {
-  const { columns, data, handleEvent, extraData, style, rowStyle, group, hover } = props
+  const { columns, data, handleEvent, extraData, style, rowStyle, group, hover, bordered } = props
   function renderData(_data: any[]) {
     return _data.map((row, dataIndex) => (
-      <div className={`row ${hover ? 'hover' : ''}`} key={dataIndex} style={rowStyle}>
+      <div
+        className={`row ${hover ? 'hover' : ''} ${bordered ? 'bordered' : ''}`}
+        key={dataIndex}
+        style={rowStyle}
+      >
         {columns.map((column, index) => (
           <Cell
             key={index}
