@@ -1,14 +1,15 @@
 import React from 'react'
-import Cell from '../Cell'
 import { Column, OnEventParams } from '../../@types'
 import { isObject } from '../../utils'
+import { Group } from '../Group'
+import { Row } from '../Row'
 
-interface Group<T = any> {
+interface IGroup<T = any> {
   type: 'objects' | 'arrays'
   customTitleRenderer?: (title: string, groupData: T[]) => React.ReactNode
 }
 
-type Props = {
+export interface Props {
   columns: Column[]
   extraData?: any
   handleEvent: (params: Omit<OnEventParams, 'extraData'>) => void
@@ -22,42 +23,14 @@ type Props = {
    * - for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}`
    * - for `type='arrays'` `data` must be of type `[[{...}, ...], ...]`
    */
-  group?: Group
+  group?: IGroup
 }
 
 function TBody(props: Props) {
-  const {
-    columns,
-    data,
-    handleEvent,
-    extraData,
-    style,
-    rowStyle,
-    group,
-    hover,
-    bordered,
-    striped,
-  } = props
+  const { data, style, group } = props
   function renderData(_data: any[]) {
     return _data.map((row, dataIndex) => (
-      <div
-        className={`row ${hover ? 'hover' : ''} ${bordered ? 'bordered' : ''} ${
-          striped ? 'striped' : ''
-        }`}
-        key={dataIndex}
-        style={rowStyle}
-      >
-        {columns.map((column, index) => (
-          <Cell
-            key={index}
-            {...column}
-            extraData={extraData}
-            dataIndex={dataIndex}
-            handleEvent={handleEvent}
-            row={row}
-          />
-        ))}
-      </div>
+      <Row key={dataIndex} {...props} row={row} dataIndex={dataIndex} />
     ))
   }
 
@@ -67,14 +40,10 @@ function TBody(props: Props) {
       throw new Error("for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}")
 
     const _data = Object.entries(data)
-    const { customTitleRenderer } = group
     return _data.map(([title, rows], index) => (
-      <div className={`group group-${index}`} key={title}>
-        <div className="group-title">
-          {customTitleRenderer ? customTitleRenderer(title, rows) : title}
-        </div>
-        {renderData(rows)}
-      </div>
+      <Group key={title + index} group={group} index={index} title={title} rows={rows}>
+        <>{renderData(rows)}</>
+      </Group>
     ))
   }
 

@@ -89,8 +89,10 @@ export interface THeaderProps {
   columns: Column[]
 }
 
-interface Group<T = any> {
+export interface Group<T = any> {
   type: 'objects' | 'arrays'
+  expandable?: boolean
+  expanded?: boolean
   customTitleRenderer?: (title: string, groupData: T[]) => React.ReactNode
 }
 

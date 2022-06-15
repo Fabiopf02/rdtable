@@ -102,6 +102,8 @@ Group.args = {
   bordered: true,
   group: {
     type: 'objects',
+    expandable: true,
+    expanded: true,
     customTitleRenderer: (t: string, g: any[]) => {
       return <h3>{t.toUpperCase()}</h3>
     },
