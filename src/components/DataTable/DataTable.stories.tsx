@@ -66,6 +66,7 @@ Full.args = {
   data,
   hover: true,
   bordered: true,
+  striped: true,
   onEvent: (e) => console.log(e),
   tableWrapperStyle: {
     width: '100%',
@@ -98,6 +99,7 @@ Group.args = {
     { text: 'Group', fieldName: 'group' },
   ],
   data: groupedData,
+  bordered: true,
   group: {
     type: 'objects',
     customTitleRenderer: (t: string, g: any[]) => {

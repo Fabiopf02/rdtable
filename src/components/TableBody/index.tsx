@@ -17,6 +17,7 @@ type Props = {
   data: any[]
   hover?: boolean
   bordered?: boolean
+  striped?: boolean
   /**
    * - for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}`
    * - for `type='arrays'` `data` must be of type `[[{...}, ...], ...]`
@@ -25,11 +26,24 @@ type Props = {
 }
 
 function TBody(props: Props) {
-  const { columns, data, handleEvent, extraData, style, rowStyle, group, hover, bordered } = props
+  const {
+    columns,
+    data,
+    handleEvent,
+    extraData,
+    style,
+    rowStyle,
+    group,
+    hover,
+    bordered,
+    striped,
+  } = props
   function renderData(_data: any[]) {
     return _data.map((row, dataIndex) => (
       <div
-        className={`row ${hover ? 'hover' : ''} ${bordered ? 'bordered' : ''}`}
+        className={`row ${hover ? 'hover' : ''} ${bordered ? 'bordered' : ''} ${
+          striped ? 'striped' : ''
+        }`}
         key={dataIndex}
         style={rowStyle}
       >

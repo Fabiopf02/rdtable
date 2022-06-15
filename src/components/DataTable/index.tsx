@@ -28,6 +28,7 @@ function DataTable(props: TableProps) {
     group,
     hover,
     bordered,
+    striped,
   } = props
   const [tableData, setTableData] = React.useState<any[]>([])
   const [currentData, setCurrentData] = React.useState<any[]>([])
@@ -81,6 +82,7 @@ function DataTable(props: TableProps) {
           group={group}
           hover={hover}
           bordered={bordered}
+          striped={striped}
         />
       </Table>
       {currentPagination ? (

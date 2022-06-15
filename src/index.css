@@ -5,7 +5,7 @@
   --padding: 0.5rem;
   --radius: 0.25rem;
   --border-color: #666;
-  --table-row: #dddddd30;
+  --border-color: #ddddddaa;
 }
 
 .rdtable {
@@ -47,19 +47,22 @@
   padding: 0;
 }
 .rdtable .rdtable-body .row.bordered {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid var(--border-color);
 }
-.rdtable .rdtable-body .row.bordered:first-child {
-  border-left: 1px solid #dddddd;
+.rdtable .rdtable-body .group .row.bordered:nth-child(2) {
+  border-top: 1px solid var(--border-color);
+}
+.rdtable .rdtable-body .row.bordered .cell:first-child {
+  border-left: 1px solid var(--border-color);
 }
 .rdtable .rdtable-body .row.bordered .cell {
-  border-right: 1px solid #dddddd;
+  border-right: 1px solid var(--border-color);
 }
 .rdtable .rdtable-body .group-title * {
   margin: 0;
 }
 .rdtable .rdtable-body .row.hover:hover {
-  background-color: #dddddd90;
+  background-color: #f1f1f1;
 }
 .rdtable .rdtable-body .row .cell {
   display: flex;
@@ -71,8 +74,8 @@
   cursor: pointer;
 }
 
-.rdtable tbody tr:nth-child(even) {
-  background: var(--table-row);
+.rdtable .rdtable-body .row.striped:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 .rdtable-pagination {

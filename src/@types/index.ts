@@ -105,6 +105,7 @@ export interface TableProps {
   tableRowStyle?: React.CSSProperties
   hover?: boolean
   bordered?: boolean
+  striped?: boolean
   remote: {
     pagination: boolean
     filter: boolean
