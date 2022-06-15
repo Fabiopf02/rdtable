@@ -55,10 +55,11 @@ function Cell(props: CellProps) {
   return (
     <div
       className={
-        'cell ' +
+        `cell ${editable ? 'editable' : ''}` +
         (cellClassName ? cellClassName({ cellValue, row, extraData, index: dataIndex }) : '')
       }
       onDoubleClick={toggleEditing}
+      title={editable ? 'Duplo clique para editar a célula' : ''}
       style={cellStyle}
     >
       {cell ? renderCustomCell() : null}
