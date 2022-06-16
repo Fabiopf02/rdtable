@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+.filter-input, .edit-input {
+  width: 100%;
+}
+
 .rdtable .rdtable-thead {
   background: var(--primary);
   color: #fff;

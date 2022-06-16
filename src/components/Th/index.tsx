@@ -35,6 +35,8 @@ function Th(props: IProps) {
           {props.filter && !props.filter.customRenderer ? (
             <input
               type={props.filter.type || 'text'}
+              className="filter-input"
+              {...props}
               onChange={onFilterChange}
               placeholder={props.filter.placeholder || ''}
             />

@@ -65,7 +65,13 @@ function Cell(props: CellProps) {
       {cell ? renderCustomCell() : null}
       {!cell ? (
         editing ? (
-          <input type="text" value={value} onChange={onEditing} onBlur={onEditingBlur} />
+          <input
+            type="text"
+            className="edit-input"
+            value={value}
+            onChange={onEditing}
+            onBlur={onEditingBlur}
+          />
         ) : (
           value
         )
