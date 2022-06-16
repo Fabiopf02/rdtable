@@ -24,13 +24,20 @@
 .rdtable .rdtable-thead {
   background: var(--primary);
   color: #fff;
+  padding: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 }
-.rdtable .thead-th {
+.rdtable .rdtable-thead .thead-th {
   display: flex;
   flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  justify-content: center;
+}
+.rdtable .thead-th:first-child {
+  border-left: 1px solid var(--border-color);
 }
 .rdtable .rdtable-thead div {
   flex: 1;
@@ -84,6 +91,7 @@
   justify-content: space-between;
   margin-top: 1rem;
   padding-top: 1rem;
+  font-size: 0.85rem;
   column-gap: var(--padding);
   border-top: 1px solid #ddd;
 }
