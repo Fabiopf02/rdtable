@@ -34,6 +34,7 @@ const columns: Column[] = [
     text: 'ID',
     fieldName: 'user.id',
     sortable: true,
+    format: (value) => 'id -> ' + value.toString(),
   },
   {
     text: 'Name',

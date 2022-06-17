@@ -6,6 +6,7 @@ function Cell(props: CellProps) {
   const {
     row,
     cell,
+    format,
     fieldName,
     cellClassName,
     extraData,
@@ -16,14 +17,14 @@ function Cell(props: CellProps) {
   } = props
   const [editing, setEditing] = useState(false)
   const cellValue = getProperty(row, fieldName)
-  const [value, setValue] = useState(cellValue)
+  const [value, setValue] = useState(format ? format(cellValue, row, extraData) : cellValue)
 
   function onEvent({ event, eventName }: CellEvent) {
-    handleEvent({ event, eventName, cellValue, row, fieldName, index: dataIndex })
+    handleEvent({ event, eventName, cellValue: value, row, fieldName, index: dataIndex })
   }
 
   function renderCustomCell() {
-    return cell ? cell({ cellValue, row, extraData, onEvent, index: 0 }) : null
+    return cell ? cell({ cellValue: value, row, extraData, onEvent, index: 0 }) : null
   }
 
   function toggleEditing() {
@@ -49,7 +50,7 @@ function Cell(props: CellProps) {
   }
 
   useEffect(() => {
-    setValue(cellValue)
+    setValue(format ? format(cellValue, row, extraData) : cellValue)
   }, [cellValue])
 
   return (

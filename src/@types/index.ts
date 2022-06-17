@@ -67,6 +67,7 @@ export interface Column {
   text: string
   headerClassName?: string
   header?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
+  format?: (cellValue: any, row: any, extraData: any) => React.ReactNode | string
   filter?: Filter
   fieldName: string
   editable?: boolean
