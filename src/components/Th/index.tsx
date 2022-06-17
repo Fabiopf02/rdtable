@@ -41,26 +41,20 @@ function Th(props: IProps) {
       onClick={onChangeSortOrder}
     >
       <div className="thead-th-content">
-        {header ? (
-          header({ onEvent, index, extraData })
-        ) : (
-          <>
-            <span>{text}</span>
-            {props.filter && !props.filter.customRenderer ? (
-              // @ts-ignore
-              <input
-                type={props.filter.type || 'text'}
-                className="filter-input"
-                {...props.filter}
-                onChange={onFilterChange}
-                placeholder={props.filter.placeholder || ''}
-              />
-            ) : null}
-            {props.filter && props.filter.customRenderer
-              ? props.filter.customRenderer({ onEvent, extraData, index })
-              : null}
-          </>
-        )}
+        {header ? header({ onEvent, index, extraData }) : <span>{text}</span>}
+        {props.filter && !props.filter.customRenderer ? (
+          // @ts-ignore
+          <input
+            type={props.filter.type || 'text'}
+            className="filter-input"
+            {...props.filter}
+            onChange={onFilterChange}
+            placeholder={props.filter.placeholder || ''}
+          />
+        ) : null}
+        {props.filter && props.filter.customRenderer
+          ? props.filter.customRenderer({ onEvent, extraData, index })
+          : null}
       </div>
       {props.sortable && <SortIcon sortOrder={sortOrder} />}
     </div>
