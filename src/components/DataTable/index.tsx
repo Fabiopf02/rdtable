@@ -4,7 +4,7 @@ import THead from '../TableHead'
 import { OnEventParams, TableProps } from '../../@types'
 import TBody from '../TableBody'
 import Pagination from '../Pagination'
-import { filterData, getFromToPaging, isObject, sliceObject } from '../../utils'
+import { filterData, getFromToPaging, isObject, sliceObject, sortData } from '../../utils'
 import '../../index.css'
 
 interface Paginate {
@@ -39,6 +39,10 @@ function DataTable(props: TableProps) {
     if (params.eventName === 'filter' && !remote.filter) {
       const newData = filterData(tableData, params)
       setTotalSize(newData.length)
+      changePaginate(currentPagination, newData)
+    }
+    if (params.eventName === 'sort' && !remote.sort) {
+      const newData = sortData(tableData, params)
       changePaginate(currentPagination, newData)
     }
     onEvent?.({ ...params, extraData })

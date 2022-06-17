@@ -15,8 +15,9 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noEmit": false,
-    "lib": ["es6", "dom"]
+    "lib": ["es6", "dom"],
   },
+  "files": ["src/globals.d.ts"],
   "exclude": [
     "lib",
     "node_modules",
@@ -26,5 +27,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
+    "src/globals.d.ts",
   ]
 }

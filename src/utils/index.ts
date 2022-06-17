@@ -7,6 +7,24 @@ export function getProperty<T>(obj: T, path: string, defaultValue: object | null
   return get(obj, isObject ? separatedPath : path, defaultValue)
 }
 
+export function sortData<T = any>(
+  data: T[],
+  params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>,
+) {
+  const { fieldName, sortOrder } = params
+  return data.sort((a, b) => {
+    const aValue = getProperty(a, fieldName!)!
+    const bValue = getProperty(b, fieldName!)!
+    if (aValue === bValue) {
+      return 0
+    }
+    if (sortOrder === 'asc') {
+      return aValue > bValue ? 1 : -1
+    }
+    return aValue < bValue ? 1 : -1
+  })
+}
+
 export function filterData(
   data: any[],
   params: Omit<OnEventParams, 'extraData' | 'cellValue' | 'row'>,

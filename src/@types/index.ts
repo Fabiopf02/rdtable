@@ -29,6 +29,9 @@ export interface OnEventParams {
 
   /* filter */
   filterValue?: string
+
+  /* sort */
+  sortOrder?: 'asc' | 'desc'
 }
 
 interface CellComponentParams extends FnParams {
@@ -58,6 +61,8 @@ interface Filter extends Partial<HTMLInputElement> {
   customRenderer?: (params: Omit<CellComponentParams, 'cellValue' | 'row'>) => React.ReactNode
 }
 
+export type SortOrder = 'asc' | 'desc'
+
 export interface Column {
   text: string
   headerClassName?: string
@@ -65,6 +70,7 @@ export interface Column {
   filter?: Filter
   fieldName: string
   editable?: boolean
+  sortable?: boolean
   extraData?: any
   headerStyle?: React.CSSProperties
   cellStyle?: React.CSSProperties
@@ -109,8 +115,9 @@ export interface TableProps {
   bordered?: boolean
   striped?: boolean
   remote: {
-    pagination: boolean
-    filter: boolean
+    pagination?: boolean
+    filter?: boolean
+    sort?: boolean
   }
   /**
    * - for `type='objects'` `data` must be of type `{'title': [{...}, ...], ...}`

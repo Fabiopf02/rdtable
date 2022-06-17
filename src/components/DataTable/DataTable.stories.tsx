@@ -33,11 +33,13 @@ const columns: Column[] = [
   {
     text: 'ID',
     fieldName: 'user.id',
+    sortable: true,
   },
   {
     text: 'Name',
     fieldName: 'user.name',
     editable: true,
+    sortable: true,
     filter: { type: 'text', placeholder: 'Filtrar por nome...' },
   },
   {

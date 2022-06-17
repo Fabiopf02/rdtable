@@ -2,14 +2,13 @@
   font-family: sans-serif;
   position: relative;
   --primary: #6d60b0;
-  --padding: 0.5rem;
+  --padding: 0.3rem;
   --radius: 0.25rem;
   --border-color: #666;
   --border-color: #ddddddaa;
 }
 
 .rdtable {
-  border-collapse: collapse;
   font-family: sans-serif;
   font-size: 16px;
 }
@@ -35,16 +34,27 @@
   justify-content: space-between;
 }
 .rdtable .rdtable-thead .thead-th {
-  display: flex;
-  flex-direction: column;
   border-right: 1px solid var(--border-color);
+}
+.rdtable .rdtable-thead .thead-th.hover {
+  cursor: pointer;
+  transition: 0.1s;
+}
+.rdtable .rdtable-thead .thead-th.hover:hover {
+  filter: brightness(0.95)
+}
+.rdtable .rdtable-thead .thead-th,
+.rdtable .rdtable-thead .thead-th .thead-th-content {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+}
+.rdtable .rdtable-thead .thead-th .thead-th-content {
+  flex-direction: column;
   justify-content: center;
 }
 .rdtable .thead-th:first-child {
   border-left: 1px solid var(--border-color);
-}
-.rdtable .rdtable-thead div {
-  flex: 1;
 }
 
 .rdtable .rdtable-body {
@@ -145,6 +155,10 @@
   display: flex;
   align-items: center;
   width: auto;
+}
+
+.sort-icon {
+  width: 1.8rem;
 }
 
 .rdtable-pagination select {
