@@ -1,21 +1,24 @@
 .rdtable-wrapper {
   font-family: sans-serif;
   position: relative;
-  --primary: #6d60b0;
+  padding: 0.35rem;
+  --primary: #28292b;
   --padding: 0.3rem;
   --radius: 0.25rem;
   --border-color: #666;
   --border-color: #ddddddaa;
+  border: 1px solid var(--border-color);
 }
 
 .rdtable {
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 15px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .rdtable * {
   font-family: sans-serif;
-  font-size: 1rem;
+  font-size: 15px;
   padding: var(--padding);
   box-sizing: border-box;
 }
@@ -25,9 +28,8 @@
 }
 
 .rdtable .rdtable-thead {
-  background: var(--primary);
-  color: #fff;
-  padding: 0.25rem;
+  color: var(--primary);
+  padding: 0;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: stretch;
@@ -64,21 +66,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 3.2rem;
+  min-height: 3rem;
   padding: 0;
 }
 .rdtable .rdtable-body .row.bordered {
-  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
 }
 .rdtable .rdtable-body .group .row.bordered:nth-child(2) {
   border-top: 1px solid var(--border-color);
 }
-.rdtable .rdtable-body .row.bordered .cell:first-child {
-  border-left: 1px solid var(--border-color);
-}
-.rdtable .rdtable-body .row.bordered .cell {
-  border-right: 1px solid var(--border-color);
-}
+
 .rdtable .rdtable-body .group-title * {
   margin: 0;
 }
@@ -103,11 +100,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+  font-size: 0.9rem;
   column-gap: var(--padding);
-  border-top: 1px solid #ddd;
 }
 
 .rdtable-pagination .pages {
