@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { PaginationProps } from '../../@types'
 import { getPagination } from './util'
 import { getFromToPaging } from '../../utils'
+import ArrowRightIcon from '../../assets/right.svg'
+import ArrowLeftIcon from '../../assets/left.svg'
 
 function Pagination(props: PaginationProps) {
   const {
@@ -102,9 +104,13 @@ function Pagination(props: PaginationProps) {
         ? props.customSizePerPageRenderer({ onChangeSizePerPage })
         : renderSizePerPageList()}
       <div className="pages">
-        <button onClick={(event) => handlePrevPage(event)}>{'<'}</button>
+        <button onClick={(event) => handlePrevPage(event)}>
+          <img src={ArrowLeftIcon} alt="arrow left" />
+        </button>
         {pagination.map(renderPageButton)}
-        <button onClick={(event) => handleNextPage(event)}>{'>'}</button>
+        <button onClick={(event) => handleNextPage(event)}>
+          <img src={ArrowRightIcon} alt="arrow right" />
+        </button>
       </div>
     </div>
   )

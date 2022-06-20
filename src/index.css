@@ -118,6 +118,10 @@
   color: var(--primary);
   box-shadow: none;
   font-weight: 500;
+  font-size: 1rem;
+}
+.rdtable-pagination .pages button img {
+  width: 0.9rem;
 }
 .rdtable-pagination .pages button:not(:disabled) {
   cursor: pointer;
@@ -133,12 +137,10 @@
 }
 
 .rdtable-pagination .pages button:active:not(:disabled) {
-  background-color: var(--primary);
-  color: #fff;
+  filter: brightness(0.8);
 }
 .rdtable-pagination .pages button:hover:not(:disabled) {
-  background-color: var(--primary);
-  color: #ddd;
+  filter: brightness(0.95);
 }
 .rdtable-pagination .pages button:first-child {
   border-radius: var(--radius) 0 0 var(--radius);
@@ -154,7 +156,7 @@
 }
 
 .sort-icon {
-  width: 1.8rem;
+  width: 1.7rem;
 }
 
 .rdtable-pagination select {
@@ -163,10 +165,10 @@
   background-color: transparent;
   border: none;
   margin: 0 0.3rem;
-  width: 4rem;
+  width: 3.5rem;
   max-width: 70px;
   font-family: inherit;
-  font-size: inherit;
+  font-size: 1rem;
   cursor: inherit;
   line-height: inherit;
   border: 1px solid var(--primary);
