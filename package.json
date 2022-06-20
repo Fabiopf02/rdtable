@@ -1,6 +1,6 @@
 {
   "name": "rdtable",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Data table component for ReactJS",
   "main": "./lib/index.js",
   "module": "./lib/module.js",
